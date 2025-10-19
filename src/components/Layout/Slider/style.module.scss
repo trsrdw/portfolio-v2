@@ -1,0 +1,129 @@
+@use '@/styles/mixin' as *;
+
+.chevron {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+
+    svg {
+        height: 48px;
+        width: auto;
+
+        path {
+            fill: $bg-white;
+            transition: 300ms ease-in-out;
+        }
+    }
+
+    &.left {
+        left: 1rem;
+    }
+
+    &.right {
+        right: 1rem;
+
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+
+    &:hover {
+        svg {
+            path {
+                fill: $lawn-green;
+            }
+        }
+    }
+}
+
+.sliderContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+
+    &:hover {
+        .chevron {
+            opacity: 1;
+
+        }
+    }
+}
+
+.cardwrapper {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.card {
+    flex: 0 0 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: $text-white;
+    font-weight: $font-semibold;
+    font-size: 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    scroll-snap-align: start;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 60%);
+    }
+
+    .cardContent {
+        position: relative;
+        z-index: 1;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    &.ep {
+        height: fit-content;
+    }
+
+    &.loc {
+        height: 200px;
+    }
+
+    @include tablet {
+        height: 200px;
+        font-size: 14px;
+
+        &.loc {
+            height: 120px;
+        }
+    }
+}

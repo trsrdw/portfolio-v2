@@ -1,0 +1,27 @@
+@use '@/styles/mixin' as *;
+
+.footer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    align-items: flex-end;
+    padding-block: 1rem;
+    margin-top: auto;
+
+    p {
+        font-size: 12px;
+
+        a {
+            font-size: 12px;
+        }
+
+        @include mobile {
+            font-size: 10px;
+
+            a {
+                font-size: 10px;
+            }
+        }
+    }
+}

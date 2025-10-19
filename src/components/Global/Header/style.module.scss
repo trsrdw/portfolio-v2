@@ -1,0 +1,214 @@
+@use '@/styles/mixin' as *;
+
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    padding: .75rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $black;
+
+    @include tablet {
+        padding-inline: 2rem;
+    }
+
+    @include mobile {
+        padding-block: .5rem;
+        padding-inline: 1rem;
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 24px;
+    line-height: 48px;
+
+    @include mobile {
+        font-size: 16px;
+        line-height: 32px;
+
+        img {
+            height: 24px;
+            width: auto;
+        }
+    }
+}
+
+.contacts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    li {
+        svg {
+            height: 24px;
+            width: auto;
+
+            @include mobile {
+                height: 20px;
+            }
+
+            path {
+                fill: $primary;
+                transition: fill 150ms ease-in-out;
+            }
+        }
+
+        &:hover {
+            svg {
+                path {
+                    fill: $hover;
+                }
+            }
+        }
+    }
+
+
+}
+
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.navigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+    transform: translateY(-10px);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+
+    &.show {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+        max-height: 500px;
+        padding: 2rem 0;
+
+        @include mobile {
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+    }
+
+    &.desktop {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        background: none;
+        padding: 0;
+        opacity: 1;
+        pointer-events: auto;
+        gap: 2rem;
+        max-height: none;
+        overflow: visible;
+    }
+
+    li {
+        position: relative;
+        cursor: pointer;
+
+        a {
+            text-decoration: none;
+            transition: color 150ms ease;
+
+            &:hover {
+                color: $text-white;
+            }
+
+            @include mobile {
+                font-size: 12px;
+            }
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            height: 2px;
+            background-color: $lawn-green;
+            width: 0;
+            transform: translateX(-50%);
+            transition: width 200ms ease, transform 200ms ease;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+
+        &.active a {
+            color: $lawn-green;
+            font-weight: $font-semibold;
+            pointer-events: none;
+        }
+
+        &.active::after {
+            width: 0;
+        }
+    }
+}
+
+.menuToggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 24px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+
+    span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: $bg-white;
+        transition: all 0.3s ease;
+        transform-origin: center;
+    }
+
+    &.open {
+        span:nth-child(1) {
+            transform: rotate(45deg) translateY(5px);
+        }
+
+        span:nth-child(2) {
+            transform: rotate(-45deg) translateY(-5px);
+        }
+    }
+
+    @include tablet {
+        display: flex;
+    }
+}
