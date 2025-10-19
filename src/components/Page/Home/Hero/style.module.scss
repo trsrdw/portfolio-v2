@@ -108,6 +108,77 @@
         }
     }
 
+    .arrow {
+        display: flex;
+        position: absolute;
+        left: 0;
+        bottom: 2.5rem;
+        width: 120px;
+        height: 120px;
+        border-left: 7px solid $primary;
+        border-bottom: 7px solid $primary;
+
+        @include mobile {
+            width: 80px;
+            height: 80px;
+            border-left: 4px solid $primary;
+            border-bottom: 4px solid $primary;
+            bottom: 1.75rem;
+        }
+
+        @include mobile_sm {
+            width: 64px;
+            height: 64px;
+            border-left: 3px solid $primary;
+            border-bottom: 3px solid $primary;
+        }
+
+        span {
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: calc(100% + 120px);
+            height: 0;
+            border-top: 7px solid $primary;
+            transform-origin: bottom left;
+            transform: rotate(-45deg);
+
+            @include mobile {
+                border-top: 4px solid $primary;
+                bottom: -3px;
+                width: calc(100% + 80px);
+            }
+
+            @include mobile_sm {
+                border-top: 3px solid $primary;
+                bottom: -2px;
+                width: calc(100% + 50px);
+            }
+        }
+    }
+
+    .accent {
+        display: none;
+
+        @include tablet {
+            position: relative;
+            width: calc(100% + 4rem);
+            margin-inline: -2rem;
+            height: 60vh;
+            display: flex;
+            overflow: hidden;
+
+            img {
+                object-fit: cover;
+            }
+        }
+
+        @include mobile {
+            width: calc(100% + 2rem);
+            margin-inline: -1rem;
+        }
+    }
+
     .navigation {
         display: flex;
         flex-direction: column;

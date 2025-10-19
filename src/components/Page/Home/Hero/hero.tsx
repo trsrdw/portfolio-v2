@@ -3,6 +3,7 @@ import SvgIcon from "@/lib/utils/svg";
 import style from "./style.module.scss";
 import { useIsTablet } from "@/lib/utils/mediaquery";
 import { Section } from "@/lib/types/data";
+import Image from "next/image";
 
 export default function HeroSection() {
     const isTablet = useIsTablet();
@@ -31,6 +32,20 @@ export default function HeroSection() {
                     <h2>Frontend</h2>
                     <h2>Developer</h2>
                 </div>
+            </div>
+
+            <div className={style.arrow}>
+                <span></span>
+            </div>
+
+            <div className={style.accent}>
+                <Image
+                    src="/accent.png"
+                    alt="Accent"
+                    fill
+                    style={{ objectFit: "cover" }}
+                    priority
+                />
             </div>
 
             <ul className={style.navigation}>
