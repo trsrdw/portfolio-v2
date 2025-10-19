@@ -5,14 +5,6 @@
   --font-arimo: 'Roboto', sans-serif;
 }
 
-@font-face {
-  font-family: "BBH Sans Bogle";
-  src: url("/fonts/BBHSansBogle.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -154,17 +146,6 @@ a {
   @include mobile {
     font-size: 12px;
   }
-}
-
-// input,
-// button,
-// textarea,
-// select {
-//   font-family: "Plus Jakarta Sans", sans-serif;
-// }
-
-.logo {
-  font-family: "BBH Sans Bogle", sans-serif;
 }
 
 .homecontent {
