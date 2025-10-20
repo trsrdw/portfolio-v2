@@ -1,3 +1,5 @@
+@use '@/styles/mixin' as *;
+
 .scroll {
     position: fixed;
     bottom: 1rem;
@@ -16,6 +18,21 @@
     transform: translateY(20px);
     transition: all 0.3s ease;
 
+    @include mobile {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &:active {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+
     svg {
         width: 1rem;
         height: 1rem;
@@ -25,6 +42,11 @@
     &:hover {
         background-color: rgba(#333, 1);
         transform: translateY(0) scale(1.1);
+
+        @include mobile {
+            background-color: rgba(#333, 0.5);
+            transform: scale(1);
+        }
     }
 
     &.show {
