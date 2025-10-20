@@ -2,6 +2,11 @@ export interface LoaderProps {
     item?: boolean;
 }
 
+export interface ErrorProps {
+    msg?: string;
+    reset?: () => void;
+}
+
 export type Section = {
     label: string;
     href: string;

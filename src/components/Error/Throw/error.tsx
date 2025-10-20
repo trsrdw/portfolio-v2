@@ -2,8 +2,8 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { useErrorContext } from "@/lib/context/errorcontext";
-import { ErrorProps } from "@/lib/types/pageprops";
 import style from "./style.module.scss";
+import { ErrorProps } from "@/lib/types/data";
 
 export default function ErrorClient({ msg, reset }: ErrorProps) {
     const { setHasError } = useErrorContext();
