@@ -13,11 +13,11 @@ export const educations: Education[] = [
 export const tools: Tool[] = [
     { label: "Next.js", logo: "/tools/next.png", link: "https://nextjs.org/" },
     { label: "React.js", logo: "/tools/react.png", link: "https://react.dev/" },
-    { label: "Strapi", logo: "/tools/strapi.png", link: "https://strapi.io/" },
-    { label: "Javascript", logo: "/tools/javascript.png", link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
     { label: "Typescript", logo: "/tools/typescript.png", link: "https://www.typescriptlang.org/" },
+    { label: "Javascript", logo: "/tools/javascript.png", link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
     { label: "Sass", logo: "/tools/sass.png", link: "https://sass-lang.com/" },
     { label: "Bootstrap", logo: "/tools/bootstrap-5.png", link: "https://getbootstrap.com/" },
+    { label: "Strapi", logo: "/tools/strapi.png", link: "https://strapi.io/" },
     { label: "Codeigniter", logo: "/tools/codeigniter.png", link: "https://www.codeigniter.com/" },
     { label: "MySQL", logo: "/tools/mysql.png", link: "https://www.mysql.com/" },
     { label: "Git", logo: "/tools/git.png", link: "https://git-scm.com/" },
@@ -131,7 +131,7 @@ export const projects: ProjectGroup[] = [
                     { label: "Sass", logo: "/tools/sass.png" },
                     { label: "MySQL", logo: "/tools/mysql.png" },
                 ],
-                link: "",
+                link: "https://github.com/trsrdw/qr-attendance",
                 status: "Development",
             },
             {
@@ -145,7 +145,7 @@ export const projects: ProjectGroup[] = [
                     { label: "Javascript", logo: "/tools/javascript.png" },
                     { label: "Sass", logo: "/tools/sass.png" },
                 ],
-                link: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+                link: "https://tiarasd.site",
                 status: "Live",
             },
             {
@@ -161,39 +161,39 @@ export const projects: ProjectGroup[] = [
                     { label: "Typescript", logo: "/tools/typescript.png" },
                     { label: "Bootstrap", logo: "/tools/bootstrap-5.png" },
                 ],
-                link: "",
+                link: "https://github.com/trsrdw/ionicafb",
                 status: "Archived",
             },
-            {
-                id: 14,
-                banner: "/projects/mm.png",
-                title: "Assignment: Money Management",
-                description:
-                    "A simple web application developed for budgeting and expense tracking. Users can record income and expenses, categorize transactions, and view financial summaries.",
-                tools: [
-                    { label: "PHP", logo: "/tools/php.png" },
-                    { label: "JQuery", logo: "/tools/jquery.png" },
-                    { label: "Javascript", logo: "/tools/javascript.png" },
-                    { label: "Bootstrap", logo: "/tools/bootstrap-5.png" },
-                ],
-                link: "",
-                status: "Archived",
-            },
-            {
-                id: 15,
-                banner: "/projects/gebook.png",
-                title: "Assignment: GEBook",
-                description:
-                    "A simple online bookstore developed as an assignment project. It allows users to browse available books, view details, and simulate purchases through a clean and user-friendly interface.",
-                tools: [
-                    { label: "HTML", logo: "/tools/html5.png" },
-                    { label: "CSS", logo: "/tools/css3.png" },
-                    { label: "Javascript", logo: "/tools/javascript.png" },
-                    { label: "Bootstrap", logo: "/tools/bootstrap-5.png" },
-                ],
-                link: "",
-                status: "Archived",
-            },
+            // {
+            //     id: 14,
+            //     banner: "/projects/mm.png",
+            //     title: "Assignment: Money Management",
+            //     description:
+            //         "A simple web application developed for budgeting and expense tracking. Users can record income and expenses, categorize transactions, and view financial summaries.",
+            //     tools: [
+            //         { label: "PHP", logo: "/tools/php.png" },
+            //         { label: "JQuery", logo: "/tools/jquery.png" },
+            //         { label: "Javascript", logo: "/tools/javascript.png" },
+            //         { label: "Bootstrap", logo: "/tools/bootstrap-5.png" },
+            //     ],
+            //     link: "",
+            //     status: "Archived",
+            // },
+            // {
+            //     id: 15,
+            //     banner: "/projects/gebook.png",
+            //     title: "Assignment: GEBook",
+            //     description:
+            //         "A simple online bookstore developed as an assignment project. It allows users to browse available books, view details, and simulate purchases through a clean and user-friendly interface.",
+            //     tools: [
+            //         { label: "HTML", logo: "/tools/html5.png" },
+            //         { label: "CSS", logo: "/tools/css3.png" },
+            //         { label: "Javascript", logo: "/tools/javascript.png" },
+            //         { label: "Bootstrap", logo: "/tools/bootstrap-5.png" },
+            //     ],
+            //     link: "",
+            //     status: "Archived",
+            // },
         ],
     },
     {
@@ -215,7 +215,7 @@ export const projects: ProjectGroup[] = [
                     { label: "MySQL", logo: "/tools/mysql.png" },
                     { label: "Node.js", logo: "/tools/node.png" },
                 ],
-                link: "",
+                link: "https://dev.greeneration.org/",
                 status: "Development",
             },
             {
@@ -247,37 +247,37 @@ export const projects: ProjectGroup[] = [
                     { label: "Javascript", logo: "/tools/javascript.png" },
                     { label: "Sass", logo: "/tools/sass.png" },
                 ],
-                link: "",
+                link: "https://www.ycombinator.com/companies/arrow",
                 status: "Down",
             },
-            {
-                id: 24,
-                banner: "/projects/communit.png",
-                title: "Communi-T Landing Page",
-                description:
-                    "A clean and responsive landing page created to promote the CommuniT brand.",
-                tools: [
-                    { label: "React.js", logo: "/tools/react.png" },
-                    { label: "Typescript", logo: "/tools/typescript.png" },
-                    { label: "Sass", logo: "/tools/sass.png" },
-                ],
-                link: "",
-                status: "Archived",
-            },
-            {
-                id: 25,
-                banner: "/projects/lincus.png",
-                title: "Lincus Landing Page",
-                description:
-                    "A clean and responsive landing page created to promote the Lincus App.",
-                tools: [
-                    { label: "React.js", logo: "/tools/react.png" },
-                    { label: "Typescript", logo: "/tools/typescript.png" },
-                    { label: "Sass", logo: "/tools/sass.png" },
-                ],
-                link: "",
-                status: "Archived",
-            },
+            // {
+            //     id: 24,
+            //     banner: "/projects/communit.png",
+            //     title: "Communi-T Landing Page",
+            //     description:
+            //         "A clean and responsive landing page created to promote the CommuniT brand.",
+            //     tools: [
+            //         { label: "React.js", logo: "/tools/react.png" },
+            //         { label: "Typescript", logo: "/tools/typescript.png" },
+            //         { label: "Sass", logo: "/tools/sass.png" },
+            //     ],
+            //     link: "",
+            //     status: "Archived",
+            // },
+            // {
+            //     id: 25,
+            //     banner: "/projects/lincus.png",
+            //     title: "Lincus Landing Page",
+            //     description:
+            //         "A clean and responsive landing page created to promote the Lincus App.",
+            //     tools: [
+            //         { label: "React.js", logo: "/tools/react.png" },
+            //         { label: "Typescript", logo: "/tools/typescript.png" },
+            //         { label: "Sass", logo: "/tools/sass.png" },
+            //     ],
+            //     link: "",
+            //     status: "Archived",
+            // },
             {
                 id: 26,
                 banner: "/projects/sisfo.png",
@@ -291,7 +291,7 @@ export const projects: ProjectGroup[] = [
                     { label: "MySQL", logo: "/tools/mysql.png" },
                     { label: "Bootstrap", logo: "/tools/bootstrap-5.png" },
                 ],
-                link: "",
+                link: "https://sisfo.elearning.widyatama.ac.id/",
                 status: "Archived",
             },
         ],
