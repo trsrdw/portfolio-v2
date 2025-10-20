@@ -74,17 +74,3 @@ $accent: #F3F3E0;
         @content;
     }
 }
-
-@mixin status-color($status) {
-    @if $status =="Alive" {
-        background-color: $info-positive;
-    }
-
-    @else if $status =="Dead" {
-        background-color: $info-negative;
-    }
-
-    @else {
-        background-color: $text-body;
-    }
-}

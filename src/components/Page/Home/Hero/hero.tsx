@@ -49,7 +49,7 @@ export default function HeroSection() {
 
             <div className={style.accent}>
                 <Image
-                    src="/accent.png"
+                    src="/mobile.png"
                     alt="Accent"
                     fill
                     style={{ objectFit: "cover" }}
