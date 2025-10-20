@@ -47,6 +47,7 @@ export default function Personal() {
                                     />
                                 </div>
                                 <p className={style.title}>{item.title}</p>
+                                <p className={style.description}>{item.description}</p>
                             </div>
                             <div className={style.tail}>
                                 <div className={style.tools}>

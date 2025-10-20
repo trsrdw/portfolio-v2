@@ -19,8 +19,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Tiara S. Dewi",
-  description: "Tiara's Portfolio",
+  title: "Tiara S. Dewi - Frontend Developer",
+  description: "Tiara's Portfolio Prensentation",
   icons: {
     icon: "/logo/logo-icon.png",
     apple: "/logo/logo-icon.png",

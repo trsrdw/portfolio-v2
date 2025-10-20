@@ -47,6 +47,7 @@ export default function Featured() {
                                     />
                                 </div>
                                 <p className={style.title}>{item.title}</p>
+                                <p className={style.description}>{item.description}</p>
                             </div>
 
                             <div className={style.tail}>

@@ -7,6 +7,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
     const isTablet = useIsTablet();
+    const available = true;
 
     const sections: Section[] = [
         { label: "about", href: "about" },
@@ -26,7 +27,15 @@ export default function HeroSection() {
             <div className={style.title}>
                 <div className={style.name}>
                     <h1>Tiara S. Dewi</h1>
-                    <div className={style.location}><SvgIcon url={"/location.svg"} /> <p>Bandung, <span>Indonesia</span></p></div>
+
+                    <div className={style.info}>
+                        <div className={style.location}><SvgIcon url={"/location.svg"} /> <p>Bandung, <span>Indonesia</span></p></div>
+
+                        <div className={`${style.availability} ${available ? style.positive : style.negative}`}>
+                            <span></span>
+                            <p>{available ? "Open to opportunities" : "Currently focused on existing work"}</p>
+                        </div>
+                    </div>
                 </div>
                 <div className={style.role}>
                     <h2>Frontend</h2>

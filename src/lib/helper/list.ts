@@ -136,20 +136,6 @@ export const projects: ProjectGroup[] = [
             },
             {
                 id: 12,
-                banner: "/projects/portfolio-v1.png",
-                title: "Portfolio - v1",
-                description:
-                    "A personal portfolio website showcasing selected projects, built to demonstrate frontend development skills and responsive design.",
-                tools: [
-                    { label: "Next.js", logo: "/tools/next.png" },
-                    { label: "Javascript", logo: "/tools/javascript.png" },
-                    { label: "Sass", logo: "/tools/sass.png" },
-                ],
-                link: "https://tiarasd.site",
-                status: "Live",
-            },
-            {
-                id: 13,
                 banner: "/projects/flippo.png",
                 title: "Thesis Project: Flippo App",
                 description:
@@ -164,6 +150,21 @@ export const projects: ProjectGroup[] = [
                 link: "https://github.com/trsrdw/ionicafb",
                 status: "Archived",
             },
+            {
+                id: 13,
+                banner: "/projects/portfolio-v1.png",
+                title: "Portfolio - v1",
+                description:
+                    "A personal portfolio website showcasing selected projects, built to demonstrate frontend development skills and responsive design.",
+                tools: [
+                    { label: "Next.js", logo: "/tools/next.png" },
+                    { label: "Javascript", logo: "/tools/javascript.png" },
+                    { label: "Sass", logo: "/tools/sass.png" },
+                ],
+                link: "https://tiarasd.site",
+                status: "Live",
+            },
+
             // {
             //     id: 14,
             //     banner: "/projects/mm.png",
@@ -238,6 +239,22 @@ export const projects: ProjectGroup[] = [
             },
             {
                 id: 23,
+                banner: "/projects/sisfo.png",
+                title: "Internship: E-learning Attendance",
+                description:
+                    "An information system for managing e-learning attendance at Widyatama University, enabling lecturers and students to track presence effectively.",
+                tools: [
+                    { label: "Codeigniter", logo: "/tools/codeigniter.png" },
+                    { label: "Javascript", logo: "/tools/javascript.png" },
+                    { label: "JQuery", logo: "/tools/jquery.png" },
+                    { label: "MySQL", logo: "/tools/mysql.png" },
+                    { label: "Bootstrap", logo: "/tools/bootstrap-5.png" },
+                ],
+                link: "https://sisfo.elearning.widyatama.ac.id/",
+                status: "Archived",
+            },
+            {
+                id: 24,
                 banner: "/projects/arrow.png",
                 title: "Arrow Landing Page",
                 description:
@@ -278,22 +295,7 @@ export const projects: ProjectGroup[] = [
             //     link: "",
             //     status: "Archived",
             // },
-            {
-                id: 26,
-                banner: "/projects/sisfo.png",
-                title: "Internship: E-learning Attendance",
-                description:
-                    "An information system for managing e-learning attendance at Widyatama University, enabling lecturers and students to track presence effectively.",
-                tools: [
-                    { label: "Codeigniter", logo: "/tools/codeigniter.png" },
-                    { label: "Javascript", logo: "/tools/javascript.png" },
-                    { label: "JQuery", logo: "/tools/jquery.png" },
-                    { label: "MySQL", logo: "/tools/mysql.png" },
-                    { label: "Bootstrap", logo: "/tools/bootstrap-5.png" },
-                ],
-                link: "https://sisfo.elearning.widyatama.ac.id/",
-                status: "Archived",
-            },
+
         ],
     },
 ];

@@ -55,11 +55,33 @@
             }
         }
 
+        .name {
+            display: flex;
+            flex-direction: column;
+            height: 90px;
+
+            @include mobile_sm {
+                height: 80px;
+            }
+        }
+
+        .info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
         .location {
             display: flex;
             align-items: center;
             gap: 6px;
             padding-left: 4px;
+            margin-top: -4px;
+
+            @include mobile_sm {
+                margin-top: -2px;
+            }
 
             p {
                 color: $text-body;
@@ -76,23 +98,51 @@
             }
         }
 
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .25rem .5rem;
+            border-radius: 24px;
+
+            span {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+            }
+
+            p {
+                font-size: 12px;
+                line-height: normal;
+
+                @include mobile_sm {
+                    font-size: 10px;
+                }
+            }
+
+            &.positive {
+                background-color: rgba($info-positive, $alpha: 0.15);
+
+                span {
+                    background-color: $info-positive;
+                }
+            }
+
+            &.negative {
+                background-color: rgba($info-negative, $alpha: 0.15);
+
+                span {
+                    background-color: $info-negative;
+                }
+            }
+        }
+
         svg {
             height: 13px;
             width: auto;
 
             path {
                 fill: $primary;
-            }
-        }
-
-        .name {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 80px;
-
-            @include mobile_sm {
-                height: 70px;
             }
         }
 
