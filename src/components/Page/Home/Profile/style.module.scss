@@ -80,10 +80,10 @@
         align-items: center;
         justify-content: space-between;
 
-        @include mobile_xs {
-            flex-direction: column;
-            // gap: .25rem;
-        }
+        // @include mobile_xs {
+        //     // flex-direction: column;
+        //     // gap: .25rem;
+        // }
 
         p {
             font-size: 12px;
@@ -92,6 +92,10 @@
 
             @include mobile {
                 font-size: 10px;
+            }
+
+            @include mobile_sm {
+                font-size: 8px;
             }
         }
     }

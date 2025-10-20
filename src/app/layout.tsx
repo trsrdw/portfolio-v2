@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Roboto } from "next/font/google";
 import { ErrorProvider } from "@/lib/context/errorcontext";
 import HeaderCondition from "@/components/Global/Context/header";
 import "@/styles/globals.scss";
+import ScrollUp from "@/components/Global/ScrollUp/scrollup";
 // import FooterCondition from "@/components/Global/Context/footer";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <HeaderCondition />
           {children}
           {/* <FooterCondition /> */}
+          <ScrollUp />
         </body>
       </html>
     </ErrorProvider>

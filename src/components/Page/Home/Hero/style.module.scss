@@ -238,10 +238,26 @@
             &:hover {
                 .line {
                     width: 60px;
+
+                    @include mobile {
+                        width: 30px;
+                    }
+
+                    @include mobile_sm {
+                        width: 20px;
+                    }
                 }
 
                 .link {
                     margin-right: 84px;
+
+                    @include mobile {
+                        margin-right: 46px;
+                    }
+
+                    @include mobile_sm {
+                        margin-right: 28px;
+                    }
                 }
             }
         }
