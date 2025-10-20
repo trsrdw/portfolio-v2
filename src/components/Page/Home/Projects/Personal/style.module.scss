@@ -325,6 +325,12 @@
         &:hover {
             background-color: #333333;
         }
+
+        @include tablet {
+            &:hover {
+                background-color: $primary;
+            }
+        }
     }
 
     .arrow {

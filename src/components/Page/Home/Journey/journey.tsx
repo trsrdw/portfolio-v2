@@ -2,6 +2,7 @@
 import style from "./style.module.scss";
 import { educations, experiences } from "@/lib/helper/list";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function JourneySection() {
     const allPositions = experiences.flatMap(exp =>
@@ -46,33 +47,45 @@ export default function JourneySection() {
         <div id="journey" className={style.journey}>
             <h1>Work & Education <span>Journey</span></h1>
             <ul className={style.path}>
-                {visibleJourney.map(group => (
-                    <li key={group.year}>
-                        <h3 className={style.year}>{group.year}</h3>
-                        {group.items.map(item => (
-                            <div key={item.id} className={style.step}>
-                                {item.type === "work" ? (
-                                    <span>
-                                        <p className={style.title}>{item.title}</p>
-                                        <p className={style.middle}>{item.company}</p>
-                                        <p className={style.period}>{item.period}</p>
-                                    </span>
-                                ) : (
-                                    <span>
-                                        <p className={style.title}>{item.degree}</p>
-                                        <p className={style.middle}>{item.institution}</p>
-                                        <p className={style.period}>{item.period}</p>
-                                    </span>
-                                )}
-                            </div>
-                        ))}
-                    </li>
-                ))}
+                <AnimatePresence>
+                    {visibleJourney.map(group => (
+                        <motion.li
+                            key={group.year}
+                            initial={{ opacity: 0, height: 0, y: 10 }}
+                            animate={{ opacity: 1, height: "auto", y: 0 }}
+                            exit={{ opacity: 0, height: 0, y: -10 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                        >
+                            <h3 className={style.year}>{group.year}</h3>
+                            {group.items.map(item => (
+                                <div key={item.id} className={style.step}>
+                                    {item.type === "work" ? (
+                                        <span>
+                                            <p className={style.title}>{item.title}</p>
+                                            <p className={style.middle}>{item.company}</p>
+                                            <p className={style.period}>{item.period}</p>
+                                        </span>
+                                    ) : (
+                                        <span>
+                                            <p className={style.title}>{item.degree}</p>
+                                            <p className={style.middle}>{item.institution}</p>
+                                            <p className={style.period}>{item.period}</p>
+                                        </span>
+                                    )}
+                                </div>
+                            ))}
+                        </motion.li>
+                    ))}
+                </AnimatePresence>
             </ul>
 
-            <button className={style.more} onClick={handleToggle}>
+            <motion.button
+                className={style.more}
+                onClick={handleToggle}
+                whileTap={{ scale: 0.86 }}
+            >
                 {allVisible ? "Show Less" : "Show All"}
-            </button>
+            </motion.button>
         </div>
     );
 }

@@ -119,5 +119,9 @@
 
     &:hover {
         background-color: $hover;
+
+        @include tablet {
+            background-color: $primary;
+        }
     }
 }

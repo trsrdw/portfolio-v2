@@ -5,12 +5,21 @@ import Image from "next/image";
 import { tools } from "@/lib/helper/list";
 import { useIsMobile } from "@/lib/utils/mediaquery";
 import { useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 export default function AboutSection() {
     const isMobile = useIsMobile();
     const [visibleCount, setVisibleCount] = useState(4);
+    const [hasInteracted, setHasInteracted] = useState(false);
+
+    const card: Variants = {
+        hidden: { opacity: 1, y: 20 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } },
+        exit: { opacity: 0, y: 20, transition: { duration: 0.3, ease: "easeIn" } },
+    };
 
     const handleToggle = () => {
+        setHasInteracted(true);
         if (visibleCount >= tools.length) {
             setVisibleCount(4);
         } else {
@@ -31,20 +40,33 @@ export default function AboutSection() {
 
             <p>These are the tools I use currently:</p>
             <ul className={style.tools}>
-                {visibleTools.map((item) => (
-                    <li key={item.label}>
-                        <Link href={item.link} target="_blank">
-                            <Image className={style.logo} src={item.logo} alt={item.label} width={128} height={128} />
-                            <span className={style.label}>{item.label}</span>
-                        </Link>
-                    </li>
-                ))}
+                <AnimatePresence>
+                    {visibleTools.map((item) => (
+                        <motion.li
+                            key={item.label}
+                            variants={card}
+                            initial={hasInteracted ? "hidden" : false}
+                            animate={hasInteracted ? "show" : false}
+                            exit="exit"
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                        >
+                            <Link href={item.link} target="_blank">
+                                <Image className={style.logo} src={item.logo} alt={item.label} width={128} height={128} />
+                                <span className={style.label}>{item.label}</span>
+                            </Link>
+                        </motion.li>
+                    ))}
+                </AnimatePresence>
             </ul>
 
             {isMobile && (
-                <button className={style.more} onClick={handleToggle}>
+                <motion.button
+                    className={style.more}
+                    onClick={handleToggle}
+                    whileTap={{ scale: 0.96 }}
+                >
                     {allVisible ? "Show Less" : "Load More"}
-                </button>
+                </motion.button>
             )}
         </div>
     );
