@@ -6,14 +6,15 @@ import SvgIcon from "@/lib/utils/svg";
 import Link from "next/link";
 import ReactPaginate, { ReactPaginateProps } from "react-paginate";
 import { useEffect, useMemo, useState } from "react";
-import { useIsTablet } from "@/lib/utils/mediaquery";
+import { useIsMobileSmall, useIsTablet } from "@/lib/utils/mediaquery";
 
 export default function Featured() {
     const isTablet = useIsTablet();
+    const isMobile = useIsMobileSmall();
     const featured = projects.find((p) => p.type === "featured");
     const items = useMemo(() => featured?.items ?? [], [featured]);
 
-    const itemsPerPage = isTablet ? 2 : 3;
+    const itemsPerPage = isMobile ? 1 : isTablet ? 2 : 3;
     const [currentItems, setCurrentItems] = useState(items.slice(0, itemsPerPage));
     const [pageCount, setPageCount] = useState(Math.ceil(items.length / itemsPerPage));
     const [itemOffset, setItemOffset] = useState(0);
