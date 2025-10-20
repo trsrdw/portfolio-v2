@@ -54,16 +54,6 @@ export default function HeroSection() {
                         <span className={style.line} />
                         <button
                             className={style.link}
-                            style={{
-                                WebkitTapHighlightColor: "transparent",
-                                WebkitTouchCallout: "none",
-                                WebkitUserSelect: "none",
-                                WebkitAppearance: "none",
-                                appearance: "none",
-                                background: "transparent",
-                                userSelect: "none",
-                                touchAction: "manipulation",
-                            }}
                             onClick={() => scrollToSection(item.href)}
                         >
                             {item.label}
