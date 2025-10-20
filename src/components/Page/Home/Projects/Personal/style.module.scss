@@ -63,8 +63,12 @@
                 padding: 1rem;
             }
 
-            @include mobile_sm {
+            @include mobile {
                 padding: .5rem;
+            }
+
+            @include mobile_sm {
+                padding: 1rem;
             }
         }
 
@@ -348,6 +352,37 @@
             path {
                 fill: $text-title;
             }
+        }
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .pagination .pagenum {
+        -webkit-tap-highlight-color: transparent;
+
+        &:hover {
+            background-color: $bg-black;
+        }
+
+        &:active {
+            background-color: $primary;
+            color: $black;
+        }
+    }
+
+    .pagination .pagebtn {
+        -webkit-tap-highlight-color: transparent;
+
+        &:hover {
+            background-color: transparent;
+        }
+
+        &:active span {
+            color: $primary;
+        }
+
+        &:active svg path {
+            fill: $primary;
         }
     }
 }
