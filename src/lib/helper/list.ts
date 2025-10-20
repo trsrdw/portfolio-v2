@@ -161,7 +161,7 @@ export const projects: ProjectGroup[] = [
                     { label: "Javascript", logo: "/tools/javascript.png" },
                     { label: "Sass", logo: "/tools/sass.png" },
                 ],
-                link: "https://tiarasd.site",
+                link: "https://v1.tiarasd.site",
                 status: "Live",
             },
 
