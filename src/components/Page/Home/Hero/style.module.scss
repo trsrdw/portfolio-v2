@@ -230,8 +230,10 @@
 
                 @include mobile {
                     outline: none;
-                    -webkit-tap-highlight-color: transparent;
                     box-shadow: none;
+                    -webkit-tap-highlight-color: transparent;
+                    -webkit-touch-callout: none;
+                    user-select: none;
 
                     &:focus,
                     &:active {
@@ -241,6 +243,7 @@
 
                     &:focus-visible {
                         outline: none;
+                        box-shadow: none;
                         // box-shadow: 0 0 0 2px rgba($primary, 0.4);
                     }
                 }

@@ -52,7 +52,13 @@ export default function HeroSection() {
                 {sections.map((item) => (
                     <li key={item.href}>
                         <span className={style.line} />
-                        <button className={style.link} onClick={() => scrollToSection(item.href)}>{item.label}</button>
+                        <button
+                            className={style.link}
+                            style={{ WebkitTapHighlightColor: "transparent" }}
+                            onClick={() => scrollToSection(item.href)}
+                        >
+                            {item.label}
+                        </button>
                     </li>
                 ))}
             </ul>
