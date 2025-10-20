@@ -236,11 +236,15 @@
                     -webkit-touch-callout: none;
                     user-select: none;
                     touch-action: manipulation;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
 
                     &:focus,
                     &:active {
                         outline: none;
                         box-shadow: none;
+                        background: transparent;
                     }
 
                     &:focus-visible {

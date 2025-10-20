@@ -58,6 +58,9 @@ export default function HeroSection() {
                                 WebkitTapHighlightColor: "transparent",
                                 WebkitTouchCallout: "none",
                                 WebkitUserSelect: "none",
+                                WebkitAppearance: "none",
+                                appearance: "none",
+                                background: "transparent",
                                 userSelect: "none",
                                 touchAction: "manipulation",
                             }}
