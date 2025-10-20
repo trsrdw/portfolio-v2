@@ -102,3 +102,34 @@
         }
     }
 }
+
+.more {
+    cursor: pointer;
+    align-self: center;
+    background-color: $primary;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+
+    @include tablet {
+        font-size: 12px;
+        padding: .75rem;
+        width: 100%;
+    }
+
+    &:hover {
+        transform: translateY(-6px);
+        background-color: $hover;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+        @include tablet {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    }
+}

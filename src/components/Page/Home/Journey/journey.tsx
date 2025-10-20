@@ -1,6 +1,7 @@
 "use client";
 import style from "./style.module.scss";
 import { educations, experiences } from "@/lib/helper/list";
+import { useState } from "react";
 
 export default function JourneySection() {
     const allPositions = experiences.flatMap(exp =>
@@ -28,11 +29,24 @@ export default function JourneySection() {
         }, {} as Record<number, { year: number; items: typeof timelineItems }>)
     ).sort((a, b) => b.year - a.year);
 
+    const [visibleCount, setVisibleCount] = useState(3);
+
+    const handleToggle = () => {
+        if (visibleCount >= groupedByYear.length) {
+            setVisibleCount(3);
+        } else {
+            setVisibleCount((prev) => prev + 3);
+        }
+    };
+
+    const visibleJourney = groupedByYear.slice(0, visibleCount);
+    const allVisible = visibleCount >= groupedByYear.length;
+
     return (
         <div id="journey" className={style.journey}>
             <h1>Work & Education <span>Journey</span></h1>
             <ul className={style.path}>
-                {groupedByYear.map(group => (
+                {visibleJourney.map(group => (
                     <li key={group.year}>
                         <h3 className={style.year}>{group.year}</h3>
                         {group.items.map(item => (
@@ -55,6 +69,10 @@ export default function JourneySection() {
                     </li>
                 ))}
             </ul>
+
+            <button className={style.more} onClick={handleToggle}>
+                {allVisible ? "Show Less" : "Show All"}
+            </button>
         </div>
     );
 }
