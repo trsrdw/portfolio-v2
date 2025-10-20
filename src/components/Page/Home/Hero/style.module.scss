@@ -223,24 +223,26 @@
                 border: none;
                 cursor: pointer;
 
+                @include wide {
+                    font-size: 160px;
+                    line-height: 1.25;
+                }
+
                 @include mobile {
                     outline: none;
                     -webkit-tap-highlight-color: transparent;
+                    box-shadow: none;
 
-                    &:focus {
-                        outline: none;
-                        box-shadow: none;
-                    }
-
+                    &:focus,
                     &:active {
                         outline: none;
                         box-shadow: none;
                     }
-                }
 
-                @include wide {
-                    font-size: 160px;
-                    line-height: 1.25;
+                    &:focus-visible {
+                        outline: none;
+                        // box-shadow: 0 0 0 2px rgba($primary, 0.4);
+                    }
                 }
 
                 span {
