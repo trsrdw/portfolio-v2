@@ -107,21 +107,22 @@
 .more {
     cursor: pointer;
     align-self: center;
-    background-color: $primary;
+    background-color: $hover;
+    color: $text-white;
     border: none;
     font-size: 12px;
-    font-weight: 500;
-    padding: .75rem;
+    font-weight: 600;
+    padding: .75rem 1rem;
     width: 100%;
     // width: fit-content;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     transition: background-color 0.3s ease;
 
     &:hover {
-        background-color: $hover;
+        background-color: $primary;
 
         @include tablet {
-            background-color: $primary;
+            background-color: $hover;
         }
     }
 }

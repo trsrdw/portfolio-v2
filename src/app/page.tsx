@@ -4,6 +4,7 @@ import AboutSection from "@/components/Page/Home/About/about";
 import JourneySection from "@/components/Page/Home/Journey/journey";
 import ProjectsSection from "@/components/Page/Home/Projects/projects";
 import ProfileSection from "@/components/Page/Home/Profile/profile";
+import FormSection from "@/components/Page/Home/Form/form";
 
 export default async function Page() {
     return (
@@ -19,6 +20,9 @@ export default async function Page() {
             </Container>
             <Container>
                 <ProjectsSection />
+            </Container>
+            <Container>
+                <FormSection />
             </Container>
             <Container>
                 <ProfileSection />
