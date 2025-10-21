@@ -28,6 +28,10 @@
             flex-direction: column;
         }
 
+        @include mobile_sm {
+            gap: 1.5rem;
+        }
+
         h1 {
             font-size: 64px;
             line-height: 48px;
@@ -62,6 +66,10 @@
 
             @include mobile_sm {
                 height: 80px;
+            }
+
+            @include mobile_xs {
+                height: 72px;
             }
         }
 
