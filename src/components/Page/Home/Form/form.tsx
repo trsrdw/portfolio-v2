@@ -3,6 +3,7 @@ import style from "./style.module.scss";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SvgIcon from "@/lib/utils/svg";
+import { Loader } from "@/components/Layout/Loader/loader";
 
 export default function FormSection() {
     const [formData, setFormData] = useState({
@@ -121,8 +122,13 @@ export default function FormSection() {
                     type="submit"
                     className={style.submit}
                     whileTap={{ scale: 0.95 }}
+                    disabled={loading}
                 >
-                    {loading ? "Sending..." : "Send Message"}
+                    {loading ? (
+                        <Loader item />
+                    ) : (
+                        "Send Message"
+                    )}
                 </motion.button>
 
                 <AnimatePresence>
