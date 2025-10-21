@@ -20,12 +20,40 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: "Tiara S. Dewi - Frontend Developer",
-  description: "Tiara's Portfolio Prensentation",
+  description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
+  robots: "index, follow",
   icons: {
     icon: "/logo/logo-icon.png",
     apple: "/logo/logo-icon.png",
   },
-  manifest: "/manifest.json"
+  manifest: "/manifest.json",
+  openGraph: {
+    title: "Tiara S. Dewi - Frontend Developer",
+    description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
+    url: process.env.NEXT_PUBLIC_BASE_URL || "https://tiarasdewi.com",
+    siteName: "Tiara S. Dewi Portfolio",
+    images: [
+      {
+        url:
+          (process.env.NEXT_PUBLIC_BASE_URL || "https://tiarasdewi.com") +
+          "/profile-meta.jpg",
+        width: 1280,
+        height: 720,
+        alt: "Tiara S. Dewi",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tiara S. Dewi - Frontend Developer",
+    description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
+    images: [
+      (process.env.NEXT_PUBLIC_BASE_URL || "https://tiarasdewi.com") +
+      "/profile-meta.jpg",
+    ],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
