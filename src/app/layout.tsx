@@ -4,7 +4,7 @@ import { ErrorProvider } from "@/lib/context/errorcontext";
 import HeaderCondition from "@/components/Global/Context/header";
 import "@/styles/globals.scss";
 import ScrollUp from "@/components/Global/ScrollUp/scrollup";
-// import FooterCondition from "@/components/Global/Context/footer";
+import FooterCondition from "@/components/Global/Context/footer";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body className={`${jakarta.variable} ${roboto.variable}`}>
           <HeaderCondition />
           {children}
-          {/* <FooterCondition /> */}
+          <FooterCondition />
           <ScrollUp />
         </body>
       </html>

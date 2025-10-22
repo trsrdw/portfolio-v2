@@ -8,8 +8,8 @@ interface ContainerProps {
 
 export default function Container({ children, className = "" }: ContainerProps) {
     return (
-        <main className={`${style.container} ${className}`}>
+        <section className={`${style.container} ${className}`}>
             {children}
-        </main>
+        </section>
     );
 }
