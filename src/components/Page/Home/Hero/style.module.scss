@@ -217,6 +217,7 @@
 
     .accent {
         display: none;
+        position: relative;
 
         @include tablet {
             position: relative;
@@ -285,32 +286,6 @@
                     font-size: 160px;
                     line-height: 1.25;
                 }
-
-                // @include mobile {
-                //     outline: none;
-                //     box-shadow: none;
-                //     -webkit-tap-highlight-color: transparent;
-                //     -webkit-user-select: none;
-                //     -webkit-touch-callout: none;
-                //     user-select: none;
-                //     touch-action: manipulation;
-                //     appearance: none;
-                //     -webkit-appearance: none;
-                //     -moz-appearance: none;
-
-                //     &:focus,
-                //     &:active {
-                //         outline: none;
-                //         box-shadow: none;
-                //         background: transparent;
-                //     }
-
-                //     &:focus-visible {
-                //         outline: none;
-                //         box-shadow: none;
-                //         // box-shadow: 0 0 0 2px rgba($primary, 0.4);
-                //     }
-                // }
 
                 span {
                     @include tablet {

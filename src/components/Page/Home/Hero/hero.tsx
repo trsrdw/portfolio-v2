@@ -1,9 +1,10 @@
 "use client";
 import SvgIcon from "@/lib/utils/svg";
+import Image from "next/image";
 import style from "./style.module.scss";
 import { useIsTablet } from "@/lib/utils/mediaquery";
 import { Section } from "@/lib/types/data";
-import Image from "next/image";
+import { motion, Variants } from "framer-motion";
 
 export default function HeroSection() {
     const isTablet = useIsTablet();
@@ -20,6 +21,24 @@ export default function HeroSection() {
         if (element) {
             element.scrollIntoView({ behavior: "smooth" });
         }
+    };
+
+    const containerVariants: Variants = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.3,
+            },
+        },
+    };
+
+    const itemVariants: Variants = {
+        hidden: { x: 50, opacity: 0 },
+        visible: {
+            x: 0,
+            opacity: 1,
+            transition: { type: "tween", duration: 0.4, ease: "easeOut" }
+        },
     };
 
     return (
@@ -57,9 +76,14 @@ export default function HeroSection() {
                 />
             </div>
 
-            <ul className={style.navigation}>
+            <motion.ul
+                className={style.navigation}
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
                 {sections.map((item) => (
-                    <li key={item.href}>
+                    <motion.li key={item.href} variants={itemVariants}>
                         <span className={style.line} />
                         <button
                             className={style.link}
@@ -67,9 +91,9 @@ export default function HeroSection() {
                         >
                             {item.label}
                         </button>
-                    </li>
+                    </motion.li>
                 ))}
-            </ul>
+            </motion.ul>
         </div>
     );
 }

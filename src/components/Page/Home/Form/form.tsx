@@ -1,7 +1,7 @@
 "use client";
 import style from "./style.module.scss";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import SvgIcon from "@/lib/utils/svg";
 import { Loader } from "@/components/Layout/Loader/loader";
 
@@ -19,6 +19,11 @@ export default function FormSection() {
     }>({ show: false, type: null });
 
     const [loading, setLoading] = useState(false);
+
+    const containerVariants: Variants = {
+        hidden: { y: 40, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.2 } },
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -79,9 +84,10 @@ export default function FormSection() {
             <motion.form
                 className={style.form}
                 onSubmit={handleSubmit}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
             >
                 <label>
                     Name

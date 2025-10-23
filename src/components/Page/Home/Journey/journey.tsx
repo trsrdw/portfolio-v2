@@ -2,7 +2,7 @@
 import style from "./style.module.scss";
 import { educations, experiences } from "@/lib/helper/list";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 export default function JourneySection() {
     const allPositions = experiences.flatMap(exp =>
@@ -43,10 +43,21 @@ export default function JourneySection() {
     const visibleJourney = groupedByYear.slice(0, visibleCount);
     const allVisible = visibleCount >= groupedByYear.length;
 
+    const containerVariants: Variants = {
+        hidden: { y: 40, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.2 } },
+    };
+
     return (
         <div id="journey" className={style.journey}>
             <h1>Work & Education <span>Journey</span></h1>
-            <ul className={style.path}>
+            <motion.ul
+                className={style.path}
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+            >
                 <AnimatePresence>
                     {visibleJourney.map(group => (
                         <motion.li
@@ -77,7 +88,7 @@ export default function JourneySection() {
                         </motion.li>
                     ))}
                 </AnimatePresence>
-            </ul>
+            </motion.ul>
 
             <motion.button
                 className={style.more}

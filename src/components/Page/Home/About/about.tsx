@@ -4,13 +4,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { tools } from "@/lib/helper/list";
 import { useIsMobile } from "@/lib/utils/mediaquery";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
 export default function AboutSection() {
     const isMobile = useIsMobile();
+    const toolsRef = useRef<HTMLUListElement>(null);
     const [visibleCount, setVisibleCount] = useState(4);
+    const [desktopInView, setDesktopInView] = useState(false);
     const [hasInteracted, setHasInteracted] = useState(false);
+
+    const containerVariants: Variants = {
+        hidden: { y: 40, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.2 } },
+    };
 
     const card: Variants = {
         hidden: { opacity: 1, y: 20 },
@@ -30,6 +37,25 @@ export default function AboutSection() {
     const visibleTools = isMobile ? tools.slice(0, visibleCount) : tools;
     const allVisible = visibleCount >= tools.length;
 
+    useEffect(() => {
+        if (isMobile) return;
+        if (!toolsRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setDesktopInView(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.4 }
+        );
+
+        observer.observe(toolsRef.current);
+
+        return () => observer.disconnect();
+    }, [isMobile]);
+
     return (
         <div id="about" className={style.about}>
             <h1><span>About</span> & Skills</h1>
@@ -39,7 +65,14 @@ export default function AboutSection() {
             </p>
 
             <p>These are the tools I use currently:</p>
-            <ul className={style.tools}>
+            <motion.ul
+                ref={toolsRef}
+                className={`${style.tools} ${desktopInView ? style.animate : ""}`}
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+            >
                 <AnimatePresence>
                     {visibleTools.map((item) => (
                         <motion.li
@@ -50,14 +83,16 @@ export default function AboutSection() {
                             exit="exit"
                             transition={{ duration: 0.3, ease: "easeOut" }}
                         >
-                            <Link href={item.link} target="_blank">
-                                <Image className={style.logo} src={item.logo} alt={item.label} width={128} height={128} />
-                                <span className={style.label}>{item.label}</span>
-                            </Link>
+                            <div className={style.tool}>
+                                <Link href={item.link} target="_blank">
+                                    <Image className={style.logo} src={item.logo} alt={item.label} width={128} height={128} />
+                                    <span className={style.label}>{item.label}</span>
+                                </Link>
+                            </div>
                         </motion.li>
                     ))}
                 </AnimatePresence>
-            </ul>
+            </motion.ul>
 
             {isMobile && (
                 <motion.button

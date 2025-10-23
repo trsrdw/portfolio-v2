@@ -5,12 +5,14 @@ import { projects } from "@/lib/helper/list";
 import SvgIcon from "@/lib/utils/svg";
 import Link from "next/link";
 import ReactPaginate, { ReactPaginateProps } from "react-paginate";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useIsMobileSmall, useIsTablet } from "@/lib/utils/mediaquery";
 
 export default function Featured() {
     const isTablet = useIsTablet();
     const isMobile = useIsMobileSmall();
+    const featuredRef = useRef<HTMLUListElement>(null);
+    const [desktopInView, setDesktopInView] = useState(false);
     const featured = projects.find((p) => p.type === "featured");
     const items = useMemo(() => featured?.items ?? [], [featured]);
 
@@ -30,47 +32,67 @@ export default function Featured() {
         setItemOffset(newOffset);
     };
 
+    useEffect(() => {
+        if (!featuredRef.current) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setDesktopInView(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.5 }
+        );
+        observer.observe(featuredRef.current);
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <div className={style.featured}>
             <h3>{featured?.type}</h3>
-            <ul className={style.list}>
+            <ul
+                ref={featuredRef}
+                className={`${style.list} ${desktopInView ? style.animate : ""}`}
+            >
                 {currentItems.map((item) => (
                     <li key={item.title}>
-                        <Link href={item.link} target="_blank">
-                            <div className={style.head}>
-                                <div className={style.imageWrapper}>
-                                    <Image
-                                        className={style.banner}
-                                        src={item.banner}
-                                        alt={item.title}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 50vw"
-                                    />
-                                </div>
-                                <p className={style.title}>{item.title}</p>
-                                <p className={style.description}>{item.description}</p>
-                            </div>
-
-                            <div className={style.tail}>
-                                <div className={style.tools}>
-                                    {item.tools.map((tool) => (
-                                        <div className={style.label} key={tool.label}>
-                                            <Image
-                                                className={style.logo}
-                                                src={tool.logo}
-                                                alt={tool.label}
-                                                width={24}
-                                                height={24}
-                                            />
-                                        </div>
-                                    ))}
+                        <div className={style.content}>
+                            <Link href={item.link} target="_blank">
+                                <div className={style.head}>
+                                    <div className={style.imageWrapper}>
+                                        <Image
+                                            className={style.banner}
+                                            src={item.banner}
+                                            alt={item.title}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                        />
+                                    </div>
+                                    <p className={style.title}>{item.title}</p>
+                                    <p className={style.description}>{item.description}</p>
                                 </div>
 
-                                <div className={style.arrow}>
-                                    <SvgIcon url={"/arrow.svg"} />
+                                <div className={style.tail}>
+                                    <div className={style.tools}>
+                                        {item.tools.map((tool) => (
+                                            <div className={style.label} key={tool.label}>
+                                                <Image
+                                                    className={style.logo}
+                                                    src={tool.logo}
+                                                    alt={tool.label}
+                                                    width={24}
+                                                    height={24}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className={style.arrow}>
+                                        <SvgIcon url={"/arrow.svg"} />
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
+                            </Link>
+                        </div>
                     </li>
                 ))}
             </ul>
