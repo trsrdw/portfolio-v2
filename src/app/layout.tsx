@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Roboto } from "next/font/google";
 import { ErrorProvider } from "@/lib/context/errorcontext";
-import Script from "next/script";
 import HeaderCondition from "@/components/Global/Context/header";
 import ScrollUp from "@/components/Global/ScrollUp/scrollup";
 import FooterCondition from "@/components/Global/Context/footer";
@@ -104,13 +103,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <ErrorProvider>
       <html lang="en">
-        <body className={`${jakarta.variable} ${roboto.variable}`}>
-          <Script
-            id="structured-data"
+        <head>
+          <script
+            id="schema"
             type="application/ld+json"
-            strategy="beforeInteractive"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
           />
+        </head>
+        <body className={`${jakarta.variable} ${roboto.variable}`}>
           <HeaderCondition />
           {children}
           <FooterCondition />
