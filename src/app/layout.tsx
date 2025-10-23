@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Roboto } from "next/font/google";
 import { ErrorProvider } from "@/lib/context/errorcontext";
 import HeaderCondition from "@/components/Global/Context/header";
-import "@/styles/globals.scss";
 import ScrollUp from "@/components/Global/ScrollUp/scrollup";
 import FooterCondition from "@/components/Global/Context/footer";
-import Script from "next/script";
+import SchemaMarkup from "@/components/Global/Schema/schema";
+import "@/styles/globals.scss";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -58,34 +58,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://tiarasdewi.com";
   return (
     <ErrorProvider>
       <html lang="en">
         <body className={`${jakarta.variable} ${roboto.variable}`}>
-          <Script
-            id="person-schema"
-            type="application/ld+json"
-            strategy="beforeInteractive"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Person",
-                name: "Tiara S. Dewi",
-                url: baseUrl,
-                image: `${baseUrl}/logo/logo-icon.png`,
-                jobTitle: "Frontend Developer",
-                worksFor: {
-                  "@type": "Organization",
-                  name: "Tiara S. Dewi Portfolio",
-                },
-                sameAs: [
-                  "https://www.linkedin.com/in/tiarasdewi",
-                  "https://github.com/trsrdw",
-                ],
-              }),
-            }}
-          />
+          <SchemaMarkup />
           <HeaderCondition />
           {children}
           <FooterCondition />
