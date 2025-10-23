@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Roboto } from "next/font/google";
 import { ErrorProvider } from "@/lib/context/errorcontext";
+import Script from "next/script";
 import HeaderCondition from "@/components/Global/Context/header";
 import ScrollUp from "@/components/Global/ScrollUp/scrollup";
 import FooterCondition from "@/components/Global/Context/footer";
-import SchemaMarkup from "@/components/Global/Schema/schema";
 import "@/styles/globals.scss";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -19,6 +19,8 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://tiarasdewi.com";
+
 export const metadata: Metadata = {
   title: "Tiara S. Dewi - Frontend Developer",
   description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
@@ -31,12 +33,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tiara S. Dewi - Frontend Developer",
     description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
-    url: process.env.NEXT_PUBLIC_BASE_URL || "https://tiarasdewi.com",
+    url: baseUrl || "https://tiarasdewi.com",
     siteName: "Tiara S. Dewi Portfolio",
     images: [
       {
         url:
-          (process.env.NEXT_PUBLIC_BASE_URL || "https://tiarasdewi.com") +
+          (baseUrl || "https://tiarasdewi.com") +
           "/profile-meta.jpg",
         width: 1280,
         height: 720,
@@ -51,10 +53,51 @@ export const metadata: Metadata = {
     title: "Tiara S. Dewi - Frontend Developer",
     description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
     images: [
-      (process.env.NEXT_PUBLIC_BASE_URL || "https://tiarasdewi.com") +
+      (baseUrl || "https://tiarasdewi.com") +
       "/profile-meta.jpg",
     ],
   },
+};
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${baseUrl}/#website`,
+      "url": baseUrl,
+      "name": "Tiara S. Dewi",
+      "alternateName": "tiarasdewi.com",
+      "publisher": {
+        "@id": `${baseUrl}/#organization`
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": `${baseUrl}/#organization`,
+      "name": "Tiara S. Dewi",
+      "url": baseUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${baseUrl}/logo/logo-icon.png`
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": `${baseUrl}/#person`,
+      "name": "Tiara S. Dewi",
+      "url": baseUrl,
+      "image": `${baseUrl}/logo/logo-icon.png`,
+      "jobTitle": "Frontend Developer",
+      "worksFor": {
+        "@id": `${baseUrl}/#organization`
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/tiarasdewi",
+        "https://github.com/trsrdw"
+      ]
+    }
+  ]
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -62,7 +105,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <ErrorProvider>
       <html lang="en">
         <body className={`${jakarta.variable} ${roboto.variable}`}>
-          <SchemaMarkup />
+          <Script
+            id="structured-data"
+            type="application/ld+json"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+          />
           <HeaderCondition />
           {children}
           <FooterCondition />
