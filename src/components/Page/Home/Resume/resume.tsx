@@ -15,7 +15,7 @@ export default function ResumeSection() {
         <section className={style.resume}>
             <div className={style.content}>
                 <div className={style.text}>
-                    <p>Discover how my skills can make an impact.</p>
+                    <p>Discover what I can bring to your team.</p>
                     <motion.div whileTap={{ scale: 0.96 }}>
                         <Link
                             href="/CV - Tiara S. Dewi.pdf"
