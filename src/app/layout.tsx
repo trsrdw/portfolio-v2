@@ -18,7 +18,8 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://tiarasdewi.com";
+const isProd = process.env.NODE_ENV === "production";
+const baseUrl = isProd ? "https://tiarasdewi.com" : "http://localhost:3000";
 
 export const metadata: Metadata = {
   title: "Tiara S. Dewi - Frontend Developer",
@@ -32,13 +33,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tiara S. Dewi - Frontend Developer",
     description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
-    url: baseUrl || "https://tiarasdewi.com",
+    url: baseUrl,
     siteName: "Tiara S. Dewi Portfolio",
     images: [
       {
-        url:
-          (baseUrl || "https://tiarasdewi.com") +
-          "/profile-meta.jpg",
+        url: (baseUrl) + "/profile-meta.jpg",
         width: 1280,
         height: 720,
         alt: "Tiara S. Dewi",
@@ -51,10 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tiara S. Dewi - Frontend Developer",
     description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
-    images: [
-      (baseUrl || "https://tiarasdewi.com") +
-      "/profile-meta.jpg",
-    ],
+    images: [(baseUrl) + "/profile-meta.jpg",],
   },
 };
 
@@ -104,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <ErrorProvider>
       <html lang="en">
         <head>
+          <link rel="canonical" href={baseUrl} />
           <script
             id="schema"
             type="application/ld+json"
