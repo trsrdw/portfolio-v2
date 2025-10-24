@@ -8,7 +8,7 @@ import { motion, Variants } from "framer-motion";
 export default function ResumeSection() {
     const slideIn: Variants = {
         hidden: { x: 50, opacity: 0 },
-        visible: { x: 0, opacity: 0.25, transition: { duration: 0.6, delay: 0.4 } },
+        visible: { x: 0, opacity: 0.25, transition: { duration: 0.8, delay: 0.4 } },
     };
 
     return (
