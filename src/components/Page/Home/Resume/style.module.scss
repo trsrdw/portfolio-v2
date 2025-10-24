@@ -3,9 +3,13 @@
 .resume {
     position: relative;
     width: 100%;
-    height: 60vh;
+    height: 70vh;
     overflow: hidden;
     padding-top: 3rem;
+
+    @include tablet {
+        height: 60vh;
+    }
 
     @include mobile {
         height: 50vh;
