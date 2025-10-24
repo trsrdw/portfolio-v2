@@ -3,18 +3,17 @@
 .notfound {
     height: 100vh;
     height: 100dvh;
-    background-image:
-        linear-gradient(to bottom, rgba(20, 20, 20, 0) 60%, rgba(20, 20, 20, 1) 100%),
-        url("/error.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: 3rem;
     gap: 2rem;
+
+    @include mobile {
+        padding: 3rem 1rem;
+    }
 
     .title {
         display: flex;
@@ -23,61 +22,45 @@
         h1 {
             font-size: 72px;
             line-height: 96px;
-            text-shadow:
-                0 0 8px rgba(0, 255, 170, 0.6),
-                0 0 16px rgba(0, 255, 170, 0.4);
-        }
-    }
-
-    @include tablet {
-        background-image: none;
-        align-items: center;
-
-        .title {
-            align-items: center;
-            text-align: center;
+            font-weight: 700;
         }
     }
 }
 
 .primary {
-    width: fit-content;
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 24px;
-    color: black;
-    background: linear-gradient(135deg, #a0ff00, #38f000);
-    border: 2px solid black;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 0 #000, 0 4px 10px rgba(56, 240, 0, 0.5);
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    align-self: center;
+    background-color: $hover;
+    color: $text-white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    text-align: center;
+
+    @include tablet {
+        font-size: 12px;
+        padding: .75rem;
+    }
+
+    @include mobile_xs {
+        width: 100%;
+    }
 
     &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 0 #000, 0 6px 15px rgba(56, 240, 0, 0.7);
-    }
+        color: $text-white;
+        transform: translateY(-6px);
+        background-color: $primary;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 
-    &:active {
-        transform: scale(0.98);
-        box-shadow: 0 2px 0 #000, 0 2px 8px rgba(56, 240, 0, 0.5);
-    }
-
-    &.glow {
-        animation: glow 1.5s infinite;
-    }
-}
-
-@keyframes glow {
-
-    0%,
-    100% {
-        box-shadow: 0 4px 10px rgba(56, 240, 0, 0.5);
-    }
-
-    50% {
-        box-shadow: 0 4px 20px rgba(56, 240, 0, 0.8);
+        @include tablet {
+            transform: translateY(0);
+            background-color: $hover;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
     }
 }

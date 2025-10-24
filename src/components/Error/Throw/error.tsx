@@ -25,7 +25,7 @@ export default function ErrorClient({ msg, reset }: ErrorProps) {
                 {reset && (
                     <button
                         onClick={() => reset()}
-                        className={style.secondary}
+                        className={style.primary}
                     >
                         Retry
                     </button>
