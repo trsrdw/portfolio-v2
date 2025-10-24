@@ -12,7 +12,7 @@ export default function ResumeSection() {
     };
 
     return (
-        <section className={style.resume}>
+        <div className={style.resume}>
             <div className={style.content}>
                 <div className={style.text}>
                     <p>Discover what I can bring to your team.</p>
@@ -44,6 +44,6 @@ export default function ResumeSection() {
                     />
                 </motion.div>
             </div>
-        </section>
+        </div>
     );
 }
