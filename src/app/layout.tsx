@@ -19,12 +19,21 @@ const roboto = Roboto({
 });
 
 const isProd = process.env.NODE_ENV === "production";
-const baseUrl = isProd ? "https://tiarasdewi.com" : "http://localhost:3000";
+const rawBase = isProd ? "https://tiarasdewi.com" : "http://localhost:3000";
+const baseUrl = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  alternates: {
+    canonical: "/",
+  },
   title: "Tiara S. Dewi - Frontend Developer",
-  description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
-  robots: "index, follow",
+  description:
+    "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: "/logo/logo-icon.png",
     apple: "/logo/logo-icon.png",
@@ -32,12 +41,13 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   openGraph: {
     title: "Tiara S. Dewi - Frontend Developer",
-    description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
-    url: baseUrl,
+    description:
+      "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
+    url: "/",
     siteName: "Tiara S. Dewi Portfolio",
     images: [
       {
-        url: (baseUrl) + "/profile-meta.jpg",
+        url: `${baseUrl}profile-meta.jpg`,
         width: 1280,
         height: 720,
         alt: "Tiara S. Dewi",
@@ -49,8 +59,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Tiara S. Dewi - Frontend Developer",
-    description: "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
-    images: [(baseUrl) + "/profile-meta.jpg",],
+    description:
+      "Portfolio of Tiara S. Dewi, a Frontend Developer specializing in React and Next.js.",
+    images: [`${baseUrl}profile-meta.jpg`],
   },
 };
 
@@ -59,40 +70,34 @@ const schemaData = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": `${baseUrl}/#website`,
-      "url": baseUrl,
-      "name": "Tiara S. Dewi",
-      "alternateName": "tiarasdewi.com",
-      "publisher": {
-        "@id": `${baseUrl}/#organization`
-      }
+      "@id": `${baseUrl}#website`,
+      url: baseUrl,
+      name: "Tiara S. Dewi",
+      alternateName: "tiarasdewi.com",
+      publisher: { "@id": `${baseUrl}#organization` },
     },
     {
       "@type": "Organization",
-      "@id": `${baseUrl}/#organization`,
-      "name": "Tiara S. Dewi",
-      "url": baseUrl,
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${baseUrl}/logo/logo-icon.png`
-      }
+      "@id": `${baseUrl}#organization`,
+      name: "Tiara S. Dewi",
+      url: baseUrl,
+      logo: { "@type": "ImageObject", url: `${baseUrl}logo/logo-icon.png` },
     },
     {
       "@type": "Person",
-      "@id": `${baseUrl}/#person`,
-      "name": "Tiara S. Dewi",
-      "url": baseUrl,
-      "image": `${baseUrl}/logo/logo-icon.png`,
-      "jobTitle": "Frontend Developer",
-      "worksFor": {
-        "@id": `${baseUrl}/#organization`
-      },
-      "sameAs": [
+      "@id": `${baseUrl}#person`,
+      name: "Tiara S. Dewi",
+      url: baseUrl,
+      image: `${baseUrl}logo/logo-icon.png`,
+      jobTitle: "Frontend Developer",
+      worksFor: { "@id": `${baseUrl}#organization` },
+      sameAs: [
         "https://www.linkedin.com/in/tiarasdewi",
-        "https://github.com/trsrdw"
-      ]
-    }
-  ]
+        "https://github.com/trsrdw",
+        "https://www.instagram.com/trsrdw/",
+      ],
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -100,7 +105,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <ErrorProvider>
       <html lang="en">
         <head>
-          <link rel="canonical" href={baseUrl} />
           <script
             id="schema"
             type="application/ld+json"
