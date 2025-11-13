@@ -88,3 +88,47 @@ export interface Contact {
     logo: string;
     link: string;
 }
+
+export interface Media {
+    url: string;
+    alternativeText?: string | null;
+    name?: string;
+    width?: number;
+    height?: number;
+}
+
+export interface CategoriesResponse<T> {
+    data: T;
+    meta: unknown;
+}
+
+export interface Category {
+    id: number;
+    documentId: string;
+    title: string;
+    description: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+}
+
+export interface PostsResponse<T> {
+    data: T;
+    meta: unknown;
+}
+
+export interface Post {
+    id: number;
+    documentId: string;
+    title: string;
+    excerpt: string;
+    slug: string;
+    banner?: Media | null;
+    writer: string;
+    locale: string;
+    categories: Category[];
+    featured: boolean;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+}
