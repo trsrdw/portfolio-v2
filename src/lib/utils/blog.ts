@@ -4,37 +4,39 @@ import { flattenAttributes, getStrapiURL } from "./general";
 
 type FetchOptions = {
     authToken?: string;
+    revalidate?: number | false;
 };
+
+type NextRequestInit = RequestInit & { next?: { revalidate?: number | false } };
 
 export async function fetchData<T = unknown>(
     url: string,
-    { authToken }: FetchOptions = {}
+    { authToken, revalidate = 3600 }: FetchOptions = {}
 ): Promise<T> {
-    const headers: RequestInit = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
-        },
-        cache: "no-store",
+    const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+        ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
     };
 
-    try {
-        const response = await fetch(url, headers);
-        const data = await response.json();
+    const baseOptions: RequestInit = { headers };
 
-        if (!response.ok) {
-            throw new Error(`Failed to fetch data: ${response.statusText}`);
-        }
-
-        return flattenAttributes(data) as T;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        throw error;
+    let finalOptions: NextRequestInit;
+    if (revalidate === false) {
+        // force-cache expects a RequestCache literal
+        finalOptions = { ...baseOptions, cache: "force-cache" as RequestCache };
+    } else {
+        finalOptions = { ...baseOptions, next: { revalidate } };
     }
+
+    const response = await fetch(url, finalOptions);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return flattenAttributes(data) as T;
 }
 
-export async function getPosts(lang: string): Promise<PostsResponse<Post[]>> {
+export async function getPosts(lang: string, opts: { revalidate?: number | false } = {}) {
     const path = "/api/posts";
     const baseUrl = getStrapiURL();
 
@@ -55,7 +57,7 @@ export async function getPosts(lang: string): Promise<PostsResponse<Post[]>> {
     url.search = query;
 
     try {
-        const data = fetchData<PostsResponse<Post[]>>(url.href);
+        const data = fetchData<PostsResponse<Post[]>>(url.href, { revalidate: opts.revalidate });
         // console.log("📦 Posts data:", data);
         return data;
     } catch (error) {
